@@ -17,7 +17,7 @@ const onClickAdd = () => {
   div.appendChild(li);
 
   //未完了のリストに追加
-  document.getElementById("incomplete-list").appenChild(div);
+  document.getElementById("incomplete-list").appendChild(div);
 };
 
 document

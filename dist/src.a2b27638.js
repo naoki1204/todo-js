@@ -207,7 +207,7 @@ var onClickAdd = function onClickAdd() {
 
   div.appendChild(li); //未完了のリストに追加
 
-  document.getElementById("incomplete-list").appenChild(div);
+  document.getElementById("incomplete-list").appendChild(div);
 };
 
 document.getElementById("add-button").addEventListener("click", function () {
@@ -241,7 +241,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34493" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40275" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
