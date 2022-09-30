@@ -203,9 +203,17 @@ var onClickAdd = function onClickAdd() {
   div.className = "list-row"; //liタグ生成
 
   var li = document.createElement("li");
-  li.innerText = inputText; //divタグの子要素に各要素を設定
+  li.innerText = inputText; //button(完了)タグ作成
 
-  div.appendChild(li); //未完了のリストに追加
+  var completeButton = document.createElement("button");
+  completeButton.innerText = "完了"; //button(削除)タグ作成
+
+  var deleteButton = document.createElement("button");
+  deleteButton.innerText = "削除"; //divタグの子要素に各要素を設定
+
+  div.appendChild(li);
+  div.appendChild(completeButton);
+  div.appendChild(deleteButton); //未完了のリストに追加
 
   document.getElementById("incomplete-list").appendChild(div);
 };
@@ -241,7 +249,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40275" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40175" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
