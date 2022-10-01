@@ -206,16 +206,45 @@ var onClickAdd = function onClickAdd() {
   li.innerText = inputText; //button(完了)タグ作成
 
   var completeButton = document.createElement("button");
-  completeButton.innerText = "完了"; //button(削除)タグ作成
+  completeButton.innerText = "完了";
+  completeButton.addEventListener("click", function () {
+    //押された完了ボタンの親タグ(div)を未完了リストから削除
+    deleteFromIncompleteList(completeButton.parentNode); //完了リストに追加する要素
+
+    var addTarget = completeButton.parentNode; //TODO内容テキストを取得
+
+    var text = addTarget.firstElementChild.innerText; //div以下を初期化
+
+    addTarget.textContent = null; //liタグ生成
+
+    var li = document.createElement("li");
+    li.innerText = text;
+    var backButton = document.createElement("button");
+    backButton.innerText = "戻す"; //divタグの子要素に各要素を設定
+
+    addTarget.appendChild(li);
+    addTarget.appendChild(backButton); //完了のリストに追加
+
+    document.getElementById("complete-list").appendChild(addTarget);
+  }); //button(削除)タグ作成
 
   var deleteButton = document.createElement("button");
-  deleteButton.innerText = "削除"; //divタグの子要素に各要素を設定
+  deleteButton.innerText = "削除";
+  deleteButton.addEventListener("click", function () {
+    //押された削除ボタンの親タグ(div)を未完了リストから削除
+    deleteFromIncompleteList(deleteButton.parentNode);
+  }); //divタグの子要素に各要素を設定
 
   div.appendChild(li);
   div.appendChild(completeButton);
   div.appendChild(deleteButton); //未完了のリストに追加
 
   document.getElementById("incomplete-list").appendChild(div);
+}; //未完了リストから指定の要素を削除
+
+
+var deleteFromIncompleteList = function deleteFromIncompleteList(target) {
+  document.getElementById("incomplete-list").removeChild(target);
 };
 
 document.getElementById("add-button").addEventListener("click", function () {
@@ -249,7 +278,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "40175" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42747" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
