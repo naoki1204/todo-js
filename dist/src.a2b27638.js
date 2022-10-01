@@ -238,6 +238,7 @@ var createIncompleteList = function createIncompleteList(text) {
       document.getElementById("complete-list").removeChild(deleteTarget); //テキストを取得
 
       var text = deleteTarget.firstElementChild.innerText;
+      createIncompleteList(text);
     }); //divタグの子要素に各要素を設定
 
     addTarget.appendChild(li);
@@ -291,7 +292,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41369" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "39641" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -52,6 +52,7 @@ const createIncompleteList = (text) => {
 
       //テキストを取得
       const text = deleteTarget.firstElementChild.innerText;
+      createIncompleteList(text);
     });
     //divタグの子要素に各要素を設定
     addTarget.appendChild(li);
