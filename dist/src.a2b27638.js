@@ -197,13 +197,23 @@ require("./styles.css");
 var onClickAdd = function onClickAdd() {
   //テキストボックスの値を取得し、初期化する
   var inputText = document.getElementById("add-text").value;
-  document.getElementById("add-text").value = ""; //div生成
+  document.getElementById("add-text").value = "";
+  createIncompleteList(inputText);
+}; //未完了リストから指定の要素を削除
 
+
+var deleteFromIncompleteList = function deleteFromIncompleteList(target) {
+  document.getElementById("incomplete-list").removeChild(target);
+}; //未完了リストに追加する関数
+
+
+var createIncompleteList = function createIncompleteList(text) {
+  //div生成
   var div = document.createElement("div");
   div.className = "list-row"; //liタグ生成
 
   var li = document.createElement("li");
-  li.innerText = inputText; //button(完了)タグ作成
+  li.innerText = text; //button(完了)タグ作成
 
   var completeButton = document.createElement("button");
   completeButton.innerText = "完了";
@@ -220,7 +230,15 @@ var onClickAdd = function onClickAdd() {
     var li = document.createElement("li");
     li.innerText = text;
     var backButton = document.createElement("button");
-    backButton.innerText = "戻す"; //divタグの子要素に各要素を設定
+    backButton.innerText = "戻す";
+    backButton.addEventListener("click", function () {
+      //押された戻すボタンの親タグ(div)を未完了リストから削除
+      //完了リストに追加する要素
+      var deleteTarget = backButton.parentNode;
+      document.getElementById("complete-list").removeChild(deleteTarget); //テキストを取得
+
+      var text = deleteTarget.firstElementChild.innerText;
+    }); //divタグの子要素に各要素を設定
 
     addTarget.appendChild(li);
     addTarget.appendChild(backButton); //完了のリストに追加
@@ -240,11 +258,6 @@ var onClickAdd = function onClickAdd() {
   div.appendChild(deleteButton); //未完了のリストに追加
 
   document.getElementById("incomplete-list").appendChild(div);
-}; //未完了リストから指定の要素を削除
-
-
-var deleteFromIncompleteList = function deleteFromIncompleteList(target) {
-  document.getElementById("incomplete-list").removeChild(target);
 };
 
 document.getElementById("add-button").addEventListener("click", function () {
@@ -278,7 +291,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "42747" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41369" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
